@@ -13,7 +13,7 @@ namespace DynamoLocalDemo.Controllers
      ApiController]
     public class AuthorsController : ControllerBase
     {
-        private readonly DynamoDBContext _context;
+        private readonly IDynamoDBContext _context;
 
         public AuthorsController(IAmazonDynamoDB amazonDynamoDb, IOptions<IDynamoSettings> settings)
         {
