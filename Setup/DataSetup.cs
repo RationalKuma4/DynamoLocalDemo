@@ -66,12 +66,7 @@ namespace DynamoLocalDemo.Setup
                 {
                     status = await GetTableStatus(tableName);
                 }
-                catch (ResourceNotFoundException)
-                {
-                    // DescribeTable is eventually consistent. So you might
-                    // get resource not found. So we handle the potential exception.
-                }
-
+                catch (ResourceNotFoundException) { }
             } while (status != "ACTIVE");
         }
 
@@ -82,9 +77,7 @@ namespace DynamoLocalDemo.Setup
                     TableName = tableName
                 })).Table.TableStatus;
 
-        public async Task DeleteTable()
-        {
+        public async Task DeleteTable() =>
             await _amazonDynamoDb.DeleteTableAsync($"{_dynamoSettings.TablePrefix}{_dynamoSettings.AuthorsTable}");
-        }
     }
 }
