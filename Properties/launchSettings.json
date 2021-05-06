@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "DynamoLocalDemo": {
+    "DynamoSettings": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

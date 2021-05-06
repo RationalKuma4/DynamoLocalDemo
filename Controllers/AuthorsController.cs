@@ -15,9 +15,12 @@ namespace DynamoLocalDemo.Controllers
     {
         private readonly IDynamoDBContext _context;
 
-        public AuthorsController(IAmazonDynamoDB amazonDynamoDb, IOptions<IDynamoSettings> settings)
+        public AuthorsController(IAmazonDynamoDB amazonDynamoDb, IOptions<DynamoSettings> settings)
         {
+            // Read dynamo settings from configuration file
             var dynamoSettings = settings.Value;
+
+            // Configuration for dynamo to add a prefix to our table's name
             var cfg = new DynamoDBContextConfig
             {
                 TableNamePrefix = dynamoSettings.TablePrefix
@@ -42,8 +45,8 @@ namespace DynamoLocalDemo.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(Guid id)
         {
-            var auhtor = await _context.LoadAsync<Author>(id);
-            return Ok(auhtor);
+            var author = await _context.LoadAsync<Author>(id);
+            return Ok(author);
         }
     }
 }
